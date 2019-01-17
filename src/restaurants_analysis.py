@@ -1,6 +1,5 @@
 import numpy as np
 import pandas as pd
-import plotly.plotly as py
 import plotly.offline as plt
 import plotly.graph_objs as go
 import warnings
@@ -103,5 +102,6 @@ def price_range(country):
 
 
 if __name__ == '__main__':
-    text_rating_plotting(text_rating_analysis())
+    print(data[data['Aggregate rating'] > 3])
+    # text_rating_plotting(text_rating_analysis())
     # max_min_rating_plotting(max_min_rating_city_wise('India'))
