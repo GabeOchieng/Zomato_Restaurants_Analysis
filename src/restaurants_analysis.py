@@ -73,9 +73,6 @@ def restaurants_density(country, write_csv=False):
 def cuisine(country):
     df = data['Cuisines'].unique()
     print(df)
-    # cuisines = data[data['Country Code'] == country_code['Australia']]
-    # cuisines = cuisines.groupby('Cuisines', as_index=False).agg({'Restaurant Name': np.count_nonzero})
-    # print(cuisines.sort_values(['Restaurant Name'], ascending=False))
 
 
 def text_rating_analysis():
@@ -99,9 +96,3 @@ def price_range(country):
     data2 = data[data['Country Code'] == country_code[country]]
     df = data2.groupby('Price range', as_index=False).agg({'Restaurant Name': 'count'})
     print(df)
-
-
-if __name__ == '__main__':
-    print(data[data['Aggregate rating'] > 3])
-    # text_rating_plotting(text_rating_analysis())
-    # max_min_rating_plotting(max_min_rating_city_wise('India'))
