@@ -2,7 +2,7 @@
 
 Analysis of Zomato Restaurants to gain knowledge of rating and popularity in different cities.
 
-- Analysis I: Below three images include rating analysis
+- Analysis I: Below three images include rating analysis with mover-over tool tip functionalities
 
 ## 1) Filtered record of highest and lowest rated restaurants of India:
 
