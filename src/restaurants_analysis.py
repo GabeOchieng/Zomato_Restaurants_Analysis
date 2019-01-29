@@ -106,13 +106,11 @@ def price_range_plotting(df):
     df2 = df[df['Price range'] == 2]
     df3 = df[df['Price range'] == 3]
     df4 = df[df['Price range'] == 4]
-    print(df1, df2, df3, df4)
+
     trace1 = go.Bar(y=df1['Aggregate rating'], x=df1['Restaurant Name'], xaxis='x1', yaxis='y1', name='Price Range: 1')
     trace2 = go.Bar(y=df2['Aggregate rating'], x=df2['Restaurant Name'], xaxis='x2', yaxis='y2', name='Price Range: 2')
     trace3 = go.Bar(y=df3['Aggregate rating'], x=df3['Restaurant Name'], xaxis='x3', yaxis='y3', name='Price Range: 3')
     trace4 = go.Bar(y=df4['Aggregate rating'], x=df4['Restaurant Name'], xaxis='x4', yaxis='y4', name='Price Range: 4')
-
-    data = [trace1, trace2, trace3, trace4]
 
     fig = tools.make_subplots(rows=2, cols=2, subplot_titles=('1', '2', '3', '4'))
 
@@ -125,7 +123,7 @@ def price_range_plotting(df):
                          margin=go.layout.Margin(l=50, r=65, b=150, t=150), showlegend=False,
                          font=dict(family='Times New Roman, monospace', size=14, color='#000000'))
 
-    plt.plot(fig, filename='make-subplots-multiple-with-titles')
+    plt.plot(fig, filename='price_range.html')
 
 
 if __name__ == '__main__':
