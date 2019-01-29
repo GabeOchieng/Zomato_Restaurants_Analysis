@@ -15,3 +15,9 @@ Analysis of Zomato Restaurants to gain knowledge of rating and popularity in dif
 - Pie chart of text rating :
 
 ![alt text](https://raw.githubusercontent.com/karankharecha/Zomato_Restaurants_Analysis/master/output_files/text_rating.png)
+
+## Analysis II:
+
+- Top 10 highest rated restaurants for each price range:
+
+![embed]https://raw.githubusercontent.com/karankharecha/Zomato_Restaurants_Analysis/blob/master/output_files/price_range.pdf[/embed]
