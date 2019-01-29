@@ -18,6 +18,6 @@ Analysis of Zomato Restaurants to gain knowledge of rating and popularity in dif
 
 ## Analysis II:
 
-- Top 10 highest rated restaurants for each price range:
+- Top 10 highest rated Indian restaurants for each price range:
 
 ![alt text](https://raw.githubusercontent.com/karankharecha/Zomato_Restaurants_Analysis/master/output_files/price_range.png)
