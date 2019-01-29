@@ -1,4 +1,4 @@
-# Zomato_Restaurants_Analysis
+# Zomato Restaurants Exploratory Analysis
 
 Analysis of Zomato Restaurants to gain knowledge of rating and popularity in different cities.
 
