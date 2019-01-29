@@ -20,9 +20,4 @@ Analysis of Zomato Restaurants to gain knowledge of rating and popularity in dif
 
 - Top 10 highest rated restaurants for each price range:
 
-<object data="https://github.com/karankharecha/Zomato_Restaurants_Analysis/blob/master/output_files/price_range.pdf" type="application/pdf">
-    <embed src="https://github.com/karankharecha/Zomato_Restaurants_Analysis/blob/master/output_files/price_range.pdf">
-        <p>This browser does not support PDFs. Please download the PDF to view it:
-            <a href="https://github.com/karankharecha/Zomato_Restaurants_Analysis/blob/master/output_files/price_range.pdf">Download PDF</a>.</p>
-    </embed>
-</object>
+![alt text](https://raw.githubusercontent.com/karankharecha/Zomato_Restaurants_Analysis/master/output_files/price_range.png)
