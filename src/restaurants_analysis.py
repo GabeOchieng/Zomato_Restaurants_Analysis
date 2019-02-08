@@ -107,7 +107,7 @@ def price_range_plotting():
 
 
 def popular_cuisine():
-    famous_cuisines = pd.DataFrame(columns=['Country', 'Cuisine', 'Restaurant Name'])
+    famous_cuisines = pd.DataFrame(columns=['Country', 'Cuisine', 'Restaurants'])
     loc = 0
     for c_name, c_code in country_code.items():
         df = data[data['Country Code'] == c_code]
@@ -120,6 +120,7 @@ def popular_cuisine():
         restaurants = restaurants[restaurants['Aggregate rating'] == restaurants['Aggregate rating'].max()]
         famous_cuisines.loc[loc] = [c_name, cuisine, restaurants['Restaurant Name'].str.cat(sep=',')]
         loc += 1
+    famous_cuisines.to_csv('../data/popular_cuisine.csv', index=False, index_label=False)
     return famous_cuisines
 
 
@@ -133,7 +134,7 @@ def value_for_money(country, a_rating):
     d = d[d['Cuisines'].str.contains(cuisine) & (d['Average Cost for two'] != 0) & (d['Aggregate rating'] > a_rating)]
     d = d.groupby('Aggregate rating', as_index=False) \
         .apply(lambda df: df[df['Average Cost for two'] == df['Average Cost for two'].min()])
-    d = d[['Aggregate rating', 'Restaurant Name', 'City', 'Average Cost for two', 'Cuisines',
+    d = d[['Country Code', 'Aggregate rating', 'Restaurant Name', 'City', 'Average Cost for two', 'Cuisines',
            'Locality Verbose']].sort_values(by='Aggregate rating', ascending=False)
     d.to_csv('../data/value_for_money.csv', index_label=False, index=False)
     return d
