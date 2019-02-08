@@ -27,6 +27,7 @@ country_code = {
 }
 
 
+# Analysis 1:
 def max_min_rating_city_wise(country, write_csv=False):
     country_restaurants = data[data['Country Code'] == country_code[country]]
     min_max_rating = pd.DataFrame()
@@ -65,43 +66,21 @@ def max_min_rating_plotting(df):
     plt.plot(fig, filename='../output_files/max_min_rating_horizontal.html')
 
 
-def restaurants_density(country, write_csv=False):
-    country_restaurants = data[data['Country Code'] == country_code[country]]
-    density = country_restaurants.groupby('City', as_index=False).agg({'Restaurant Name': np.count_nonzero})
-    print(density)
-
-
-def cuisine(country):
-    df = data['Cuisines'].unique()
-    print(df)
-
-
-def text_rating_analysis():
-    return data.groupby('Rating text', as_index=False).agg({'Aggregate rating': np.mean})
-
-
-def text_rating_plotting(df):
+def text_rating_plotting():
+    df = data.groupby('Rating text', as_index=False).agg({'Aggregate rating': np.mean})
     labels = df['Rating text']
     values = df['Aggregate rating']
     trace = go.Pie(labels=labels, values=values)
 
-    plt.plot([trace], filename='../plots/text_rating_plotting')
+    plt.plot([trace], filename='../output_files/text_rating_plotting.html')
 
 
-def rating_color_analysis():
-    df = data.groupby('Rating color').agg({'Aggregate rating': np.mean})
-    print(df)
+# Analysis 2:
+def price_range_plotting():
+    df = data[data['Country Code'] == 1]
+    df = df.drop_duplicates(subset='Restaurant Name', keep='last')
+    df = df.sort_values(['Price range', 'Aggregate rating'], ascending=[True, False]).groupby('Price range').head(10)
 
-
-def price_range(country):
-    data2 = data[data['Country Code'] == country_code[country]]
-    data2 = data2.drop_duplicates(subset='Restaurant Name', keep='last')
-    # df = data2.sort_values(['Price range', 'Aggregate rating'], ascending=False).groupby('Price range')
-    df = data2.sort_values(['Price range', 'Aggregate rating'], ascending=[True, False]).groupby('Price range')
-    return df.head(10)
-
-
-def price_range_plotting(df):
     df1 = df[df['Price range'] == 1]
     df2 = df[df['Price range'] == 2]
     df3 = df[df['Price range'] == 3]
@@ -119,13 +98,42 @@ def price_range_plotting(df):
     fig.append_trace(trace3, 2, 1)
     fig.append_trace(trace4, 2, 2)
 
-    fig['layout'].update(height=1200, width=1000, title='Restaurants with Highest Aggregate Rating for all Price Ranges',
+    fig['layout'].update(height=1200, width=1000,
+                         title='Restaurants with Highest Aggregate Rating for all Price Ranges',
                          margin=go.layout.Margin(l=50, r=65, b=150, t=150), showlegend=False,
                          font=dict(family='Times New Roman, monospace', size=14, color='#000000'))
 
     plt.plot(fig, filename='price_range.html')
 
 
-if __name__ == '__main__':
-    # max_min_rating_plotting(max_min_rating_city_wise('India'))
-    price_range_plotting(price_range('India'))
+def popular_cuisine():
+    famous_cuisines = pd.DataFrame(columns=['Country', 'Cuisine', 'Restaurant Name'])
+    loc = 0
+    for c_name, c_code in country_code.items():
+        df = data[data['Country Code'] == c_code]
+        d = pd.DataFrame(df['Cuisines'].str.split(",", expand=True))
+        d = d.apply(pd.value_counts).sum(1)
+        d.index = d.index.str.strip()
+        cuisine = d.sort_values(ascending=False).head(1).index[0]
+        df['Cuisines'].fillna(value='None', inplace=True)
+        restaurants = df[df['Cuisines'].str.contains(cuisine)]
+        restaurants = restaurants[restaurants['Aggregate rating'] == restaurants['Aggregate rating'].max()]
+        famous_cuisines.loc[loc] = [c_name, cuisine, restaurants['Restaurant Name'].str.cat(sep=',')]
+        loc += 1
+    return famous_cuisines
+
+
+# Analysis 3:
+def value_for_money(country, a_rating):
+    d = (data[data['Country Code'] == country_code[country]])
+    cuisine = popular_cuisine()
+    cuisine = (cuisine[cuisine['Country'] == country])['Cuisine'].iloc[0]
+    d.sort_values(by=['Aggregate rating', 'Average Cost for two'], ascending=[False, True], inplace=True)
+    d['Cuisines'].fillna(value='None', inplace=True)
+    d = d[d['Cuisines'].str.contains(cuisine) & (d['Average Cost for two'] != 0) & (d['Aggregate rating'] > a_rating)]
+    d = d.groupby('Aggregate rating', as_index=False) \
+        .apply(lambda df: df[df['Average Cost for two'] == df['Average Cost for two'].min()])
+    d = d[['Aggregate rating', 'Restaurant Name', 'City', 'Average Cost for two', 'Cuisines',
+           'Locality Verbose']].sort_values(by='Aggregate rating', ascending=False)
+    d.to_csv('../data/value_for_money.csv', index_label=False, index=False)
+    return d
