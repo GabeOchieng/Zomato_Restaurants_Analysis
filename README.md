@@ -17,7 +17,7 @@ CSV file indicates city wise highest and lowest rated restaurants which can be u
 
 -----------------------------------------------------------------------------------------------------------------------------
 
-## Analysis II: Below image show rating and popularity of restaurants on the basis of  price range, cuisines, and total cost for two
+## Analysis II: Below images show rating and popularity of restaurants on the basis of  price range, cuisines, and total cost for two
 
 - Top 10 highest rated Indian restaurants for each price range (1 to 4) :
 
