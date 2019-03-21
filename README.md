@@ -12,10 +12,6 @@ Analysis of Zomato Restaurants to gain knowledge of rating and popularity in dif
 
 ![alt text](https://raw.githubusercontent.com/karankharecha/Zomato_Restaurants_Analysis/master/output_files/max_min_rating.png)
 
-- Pie chart of text rating :
-
-![alt text](https://raw.githubusercontent.com/karankharecha/Zomato_Restaurants_Analysis/master/output_files/text_rating.png)
-
 ### Summary:
 CSV file indicates city wise highest and lowest rated restaurants which can be useful when people visit different cities of India.
 
