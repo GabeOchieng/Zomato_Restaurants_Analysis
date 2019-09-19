@@ -21,7 +21,7 @@ CSV file indicates city wise highest and lowest rated restaurants which can be u
 
 - Top 10 highest rated Indian restaurants for each price range (1 to 4) :
 
-![alt text](https://raw.githubusercontent.com/karankharecha/Zomato_Restaurants_Analysis/master/output_files/price_range.png)
+![alt text](https://raw.githubusercontent.com/karankharecha/Zomato_Restaurants_Analysis/master/output_files/price_range.jpg)
 
 - List of popular cuisine in all countries with highest rated serving restaurants :
 
